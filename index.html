@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,101 @@
     <title>Document</title>
 </head>
 <script>
-function computerPlay(){
-    let rpsnum=Math.floor(Math.random() * 3) + 1;
-    return rpsnum;
-}
-console.log(rpsnum);
+    const choice = ["Rock", "Paper", "Scissors"];
+    function computerPlay() {
+        let rpsnum = Math.floor(Math.random() * 3);
+
+        computerChoice = rpsnum;
+    }
+    
+    let playerPoint = 0;
+    let computerPoint = 0;
+    let playerSelection=0;
+    function playRound(computerChoice, playerSelection) {
+        let result1="dsd";
+        if (playerSelection === 0) {
+
+            if (computerChoice === 2) {
+                result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
+                playerPoint++;
+                return result1;
+
+            }
+            else if(computerChoice!=playerSelection) {
+                result1 = "You lost " + choice[computerChoice] + " beats " + choice[playerSelection];
+                computerPoint++;
+                return result1;
+
+            }
+        }
+
+        if (playerSelection === 1) {
+            if (computerChoice === 0) {
+                result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
+                playerPoint++;
+                return result1;
+
+            }
+            else if(computerChoice!=playerSelection) {
+                result1 = "You lost " + choice[computerChoice] + " beats " + choice[playerSelection];
+                computerPoint++;
+                return result1;
+
+
+            }
+        }
+
+        if (playerSelection === 2) {
+            if (computerChoice === 1) {
+                result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
+                playerPoint++;
+                return result1;
+
+            }
+            else if(computerChoice!=playerSelection) {
+                result1 = "You lost " + choice[computerChoice] + " beats " + choice[playerSelection];
+                computerPoint++;
+                return result1;
+
+            }
+        }
+        else {
+            result1 = "Tie player: " + choice[playerSelection] + " computer: " + choice[computerChoice];
+            return result1;
+        }
+    }
+    let computerChoice = 0;
 
 
 
+    let result = ["", "", "", "", ""];
 
 
+    function game() {
+        for (let i = 0; i < 5; i++) {
+            computerPlay();
+            
+            playerSelection = parseInt(prompt());
+            console.log("player: "+playerSelection);
+            result[i] = playRound(computerChoice, playerSelection);
+            console.log(computerChoice);
+            console.log(result[i]);
+            
+        }
+        
+    }
+    game();
 
 
+    if (playerPoint > computerPoint) {
+        console.log("You won with " + playerPoint + " to " + computerPoint)
+    }
+    else if (playerPoint < computerPoint) {
+        console.log("You lost with " + computerPoint + " to " + playerPoint)
+    }
+    else {
+        console.log("Tie " + playerPoint + " to " + computerPoint)
+    }
 
 
 
@@ -27,7 +111,9 @@ console.log(rpsnum);
 
 
 </script>
+
 <body>
-    
+
 </body>
+
 </html>
