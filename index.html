@@ -7,20 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+
+<body>
+    <div class="btn-div">
+        <button class="btn"id="0">
+            Rock
+            </button>
+            <button class="btn" id="1">
+             Paper   
+            </button>
+            <button class="btn" id="2">
+                Scissors
+            </button>
+    </div>
+
+<div class="main-div">
+    <div class="top-move">
+        Computer
+    </div>
+    <div class="top-move">
+        
+    Human
+    </div>
+    
+</div>
+<div id="moves">
+    <div class="shrink">
+        dss
+    </div>
+    <div class="shrink">
+        gh
+    </div>
+    <div class="shrink">
+        gh
+    </div>
+    <div class="shrink">
+        gh
+    </div>
+</div>
+</body>
+
+</html>
 <script>
+    let playerSelection=0;
+    let i=0;
+    const buttons=document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click",function(e){
+            playerSelection=e.target.id;
+            
+            playerSelection=Number(playerSelection);
+            console.log(playerSelection);
+            computerPlay();
+            playRound(computerChoice, playerSelection);
+            createList(computerChoice, playerSelection);
+            check();
+        });
+        
+    });
+    console.log("player "+playerSelection);
+
+
+
     const choice = ["Rock", "Paper", "Scissors"];
     function computerPlay() {
         let rpsnum = Math.floor(Math.random() * 3);
 
         computerChoice = rpsnum;
+        console.log(computerChoice);
     }
     
     let playerPoint = 0;
     let computerPoint = 0;
-    let playerSelection=0;
+    
     function playRound(computerChoice, playerSelection) {
-        let result1="dsd";
-        if (playerSelection === 0) {
+        let result1="";
+        /*console.log("jatek")
+        console.log("jatekos2 "+playerSelection);*/
+        if (playerSelection == 0) {
 
             if (computerChoice === 2) {
                 result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
@@ -36,7 +101,7 @@
             }
         }
 
-        if (playerSelection === 1) {
+        if (playerSelection == 1) {
             if (computerChoice === 0) {
                 result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
                 playerPoint++;
@@ -52,7 +117,7 @@
             }
         }
 
-        if (playerSelection === 2) {
+        if (playerSelection == 2) {
             if (computerChoice === 1) {
                 result1 = "You won " + choice[playerSelection] + " beats " + choice[computerChoice];
                 playerPoint++;
@@ -70,6 +135,24 @@
             result1 = "Tie player: " + choice[playerSelection] + " computer: " + choice[computerChoice];
             return result1;
         }
+
+    }
+    function createList(computerChoice, playerSelection){
+        const moves=document.getElementById("moves");
+        //const divname="div"+i;
+        
+        divname=document.createElement("div");
+        divname.className="shrink"
+        divname.textContent=choice[computerChoice];
+        moves.appendChild(divname);
+
+        console.log("hello")
+        i++;
+        divname="div"+i;
+        divname=document.createElement("div");
+        divname.className="shrink";
+        divname.textContent=choice[playerSelection];
+        moves.appendChild(divname);
     }
     let computerChoice = 0;
 
@@ -78,7 +161,7 @@
     let result = ["", "", "", "", ""];
 
 
-    function game() {
+    /*function game() {
         for (let i = 0; i < 5; i++) {
             computerPlay();
             
@@ -90,10 +173,10 @@
             
         }
         
-    }
-    game();
+    }*/
+    //game();
 
-
+    function check(){
     if (playerPoint > computerPoint) {
         console.log("You won with " + playerPoint + " to " + computerPoint)
     }
@@ -103,7 +186,7 @@
     else {
         console.log("Tie " + playerPoint + " to " + computerPoint)
     }
-
+};
 
 
 
@@ -111,9 +194,40 @@
 
 
 </script>
+<style>
+    #moves{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .shrink{
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 50%;
+    }
+    .btn-div{
+        display: flex;
+        justify-content: center;
+        
+        
+    }
 
-<body>
-
-</body>
-
-</html>
+    button{
+        margin-left: 15px;
+        height: 150px;
+        width:200px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+        border-radius: 25px;
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    .main-div{
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+    .top-move{
+        margin-left: 15px;
+    }
+</style>
