@@ -10,6 +10,14 @@
 
 
 <body>
+    <div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
     <div class="btn-div">
         <button class="btn"id="0">
             Rock
@@ -23,28 +31,17 @@
     </div>
 
 <div class="main-div">
-    <div class="top-move">
-        Computer
+    <div id="computer"class="top-move">
+        Computer 0
     </div>
-    <div class="top-move">
+    <div id="human"class="top-move">
         
-    Human
+    Human 0
     </div>
     
 </div>
 <div id="moves">
-    <div class="shrink">
-        dss
-    </div>
-    <div class="shrink">
-        gh
-    </div>
-    <div class="shrink">
-        gh
-    </div>
-    <div class="shrink">
-        gh
-    </div>
+
 </div>
 </body>
 
@@ -140,11 +137,18 @@
     function createList(computerChoice, playerSelection){
         const moves=document.getElementById("moves");
         //const divname="div"+i;
+        const main=document.createElement("div");
+        main.className="shrink1"
+        moves.appendChild(main);
+
+        //divname.textContent=choice[computerChoice];
         
+
+
         divname=document.createElement("div");
         divname.className="shrink"
         divname.textContent=choice[computerChoice];
-        moves.appendChild(divname);
+        main.appendChild(divname);
 
         console.log("hello")
         i++;
@@ -152,7 +156,16 @@
         divname=document.createElement("div");
         divname.className="shrink";
         divname.textContent=choice[playerSelection];
-        moves.appendChild(divname);
+        main.appendChild(divname);
+
+        const human=document.getElementById("human");
+        human.textContent="Human ";
+        human.textContent+=playerPoint;
+        const computer=document.getElementById("computer");
+        computer.textContent="Computer ";
+        computer.textContent+=computerPoint;
+
+
     }
     let computerChoice = 0;
 
@@ -197,12 +210,20 @@
 <style>
     #moves{
         display: flex;
-        flex-wrap: wrap;
+        
+        flex-direction: column;
+        border-top: 2px solid gray;
+    }
+    
+    .shrink1{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
     }
     .shrink{
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: 50%;
+        display: flex;
+        
+        margin-left: 15px;;
     }
     .btn-div{
         display: flex;
