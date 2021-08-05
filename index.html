@@ -29,7 +29,11 @@
                 Scissors
             </button>
     </div>
-
+<div >
+<h2 id="final">
+    &#8205
+</h2>
+</div>
 <div class="main-div">
     <div id="computer"class="top-move">
         Computer 0
@@ -49,19 +53,39 @@
 <script>
     let playerSelection=0;
     let i=0;
+    let playerPoint = 0;
+    let computerPoint = 0;
+    let boolen=true;
     const buttons=document.querySelectorAll("button");
     buttons.forEach((button) => {
+        
         button.addEventListener("click",function(e){
             playerSelection=e.target.id;
             
             playerSelection=Number(playerSelection);
+            if(playerPoint<5&&computerPoint<5){
             console.log(playerSelection);
             computerPlay();
             playRound(computerChoice, playerSelection);
             createList(computerChoice, playerSelection);
             check();
+
+            }
+            
+            if(playerPoint==5||computerPoint==5){
+                if(computerPoint>playerPoint){
+                    const h2=document.getElementById("final");
+                    h2.textContent="You lost, Computer won!";
+                }
+                else{
+                    const h2=document.getElementById("final");
+                    h2.textContent="You won!";
+                }
+            };
+
         });
-        
+
+
     });
     console.log("player "+playerSelection);
 
@@ -75,8 +99,7 @@
         console.log(computerChoice);
     }
     
-    let playerPoint = 0;
-    let computerPoint = 0;
+    
     
     function playRound(computerChoice, playerSelection) {
         let result1="";
@@ -217,13 +240,15 @@
     
     .shrink1{
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         margin-top: 10px;
+        border-bottom: 1px solid  gray;
+        
     }
     .shrink{
         display: flex;
-        
-        margin-left: 15px;;
+        min-width: 67px;
+        /*margin-left: 15px;*/
     }
     .btn-div{
         display: flex;
@@ -245,10 +270,15 @@
     }
     .main-div{
         display: flex;
-        justify-content: center;
-        margin-top: 25px;
+        justify-content: space-evenly;
+        margin-top: 5px;
     }
     .top-move{
-        margin-left: 15px;
+        
+    }
+    h2{
+        margin: 5px;
+        text-align: center;
+        
     }
 </style>
